@@ -15,20 +15,47 @@ class PeopleViewModel: ObservableObject {
     }
     
     func loadPeople() {
-        let jsonString = """
-        [{"sam":{"dbh":{},"vsam":{}},"id":646,"name":"Maurice Bamberger","address":"52 Richmond Avenue Prestwich M25 0LW ","number":"CL0646","companyName":"","contactNumber":"7946467658","domainName":null,"email":"mauricebamberger27441@gmail.com","to":"stuart@hoodies.co.uk","subject":"Invoice","headers":"From: stuart@inteleweb.com\\r\\nReply-To: stuart@hoodies.co.uk\\r\\nMIME-Version: 1.0\\r\\nContent-Type: multipart\\/mixed; boundary=\\"boundary\\"\\r\\nX-Mailer: PHP\\/8.2.20"},{"sam":{"dbh":{},"vsam":{}},"id":647,"name":"Shlomo Zalman Rosenbuam","address":"12 Melton Road Manchester M8 4HG","number":"CY0647","companyName":"","contactNumber":"","domainName":null,"email":"025797622r@gmail.com","to":"stuart@hoodies.co.uk","subject":"Invoice","headers":"From: stuart@inteleweb.com\\r\\nReply-To: stuart@hoodies.co.uk\\r\\nMIME-Version: 1.0\\r\\nContent-Type: multipart\\/mixed; boundary=\\"boundary\\"\\r\\nX-Mailer: PHP\\/8.2.20"}]
-        """
+        guard let url = URL(string: "http://127.0.0.1:8081/api/clients.php") else {
+            print("Invalid URL.")
+            return
+        }
         
-        // Decode the JSON string into the people array
-        if let jsonData = jsonString.data(using: .utf8) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Failed to load data: \(error.localizedDescription)")
+                return
+            }
+            
+            // Check the response status code
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
+                print("HTTP error: \(httpResponse.statusCode)")
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received.")
+                return
+            }
+            
             do {
-                let decodedPeople = try JSONDecoder().decode(People.self, from: jsonData)
+                // Debug print statements
+                
+                if let dataString = String(data: data, encoding: .utf8) {
+                    print("Received data string: \(dataString)")
+                } else {
+                    print("Failed to convert data to string.")
+                }
+                                        
+                // Attempt to decode the JSON data into the Version struct
+                let decodedPeople = try JSONDecoder().decode(People.self, from: data)
+
+                // Update the published version property on the main thread
                 DispatchQueue.main.async {
                     self.people = decodedPeople
                 }
             } catch {
-                print("Failed to decode JSON: \(error)")
+                print("Failed to decode JSON: \(error.localizedDescription)")
             }
-        }
+        }.resume() // Don't forget to start the data task
     }
 }
