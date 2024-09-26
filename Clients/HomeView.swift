@@ -1,16 +1,13 @@
 //
-//  ContentView.swift
+//  HomeView.swift
 //  Clients
 //
 //  Created by Stuart Hood on 26/09/2024.
 //
 
-// ContentView.swift
 import SwiftUI
 
-struct ContentView: View {
-    @StateObject private var viewModel = ClientDetailsViewModel()
-
+struct HomeView: View {
     var body: some View {
         VStack {
             Image("Inteleweb")
@@ -34,5 +31,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }

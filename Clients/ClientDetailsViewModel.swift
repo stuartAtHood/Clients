@@ -1,5 +1,5 @@
 //
-//  PeopleViewModel.swift
+//  ClientDetailsViewModel.swift
 //  Clients
 //
 //  Created by Stuart Hood on 26/09/2024.
@@ -7,19 +7,20 @@
 
 import Foundation
 
-class PeopleViewModel: ObservableObject {
-    @Published var people: [Person] = []
-    
+class ClientDetailsViewModel: ObservableObject {
+    @Published var clientDetails: ClientDetails?
+
     init() {
-        loadPeople()
+        loadClientDetails()
     }
-    
-    func loadPeople() {
-        guard let url = URL(string: "http://127.0.0.1:8081/api/clients.php") else {
+
+    func loadClientDetails() {
+        guard let url = URL(string: "http://127.0.0.1:8081/api/clientDetails.php?clientid=646") else {
             print("Invalid URL.")
             return
         }
-        
+                
+        // Perform the network request asynchronously using URLSession
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 print("Failed to load data: \(error.localizedDescription)")
@@ -41,17 +42,18 @@ class PeopleViewModel: ObservableObject {
                 // Debug print statements
                 
                 if let dataString = String(data: data, encoding: .utf8) {
-                    print("Received data string.")
+                    print("Received data string: \(dataString)")
                 } else {
                     print("Failed to convert data to string.")
                 }
                                         
                 // Attempt to decode the JSON data into the Version struct
-                let decodedPeople = try JSONDecoder().decode(People.self, from: data)
-
+                let decodedClientDetails = try JSONDecoder().decode(ClientDetails.self, from: data)
+                
                 // Update the published version property on the main thread
                 DispatchQueue.main.async {
-                    self.people = decodedPeople
+                    self.clientDetails = decodedClientDetails
+                    
                 }
             } catch {
                 print("Failed to decode JSON: \(error.localizedDescription)")
@@ -59,3 +61,4 @@ class PeopleViewModel: ObservableObject {
         }.resume() // Don't forget to start the data task
     }
 }
+
