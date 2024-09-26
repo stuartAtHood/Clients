@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = PeopleViewModel()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView {
+            List(viewModel.people) { person in
+                VStack(alignment: .leading) {
+                    Text(person.name)
+                        .font(.headline)
+                    Text(person.address)
+                        .font(.subheadline)
+                    Text("Email: \(person.email)")
+                        .font(.subheadline)
+                    Text("Contact: \(person.contactNumber)")
+                        .font(.subheadline)
+                }
+                .padding()
+            }
+            .navigationTitle("People List")
         }
-        .padding()
     }
 }
 

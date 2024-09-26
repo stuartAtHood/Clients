@@ -11,6 +11,8 @@
 		173918A52CA5557100990AE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173918A42CA5557100990AE7 /* ContentView.swift */; };
 		173918A72CA5557100990AE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173918A62CA5557100990AE7 /* Assets.xcassets */; };
 		173918AB2CA5557100990AE7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173918AA2CA5557100990AE7 /* Preview Assets.xcassets */; };
+		173918B22CA555AC00990AE7 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173918B12CA555AC00990AE7 /* Person.swift */; };
+		173918B62CA5566F00990AE7 /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173918B52CA5566F00990AE7 /* PeopleViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		173918A62CA5557100990AE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		173918A82CA5557100990AE7 /* Clients.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clients.entitlements; sourceTree = "<group>"; };
 		173918AA2CA5557100990AE7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		173918B12CA555AC00990AE7 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		173918B52CA5566F00990AE7 /* PeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			children = (
 				173918A22CA5557100990AE7 /* ClientsApp.swift */,
 				173918A42CA5557100990AE7 /* ContentView.swift */,
+				173918B12CA555AC00990AE7 /* Person.swift */,
+				173918B52CA5566F00990AE7 /* PeopleViewModel.swift */,
 				173918A62CA5557100990AE7 /* Assets.xcassets */,
 				173918A82CA5557100990AE7 /* Clients.entitlements */,
 				173918A92CA5557100990AE7 /* Preview Content */,
@@ -139,6 +145,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				173918B22CA555AC00990AE7 /* Person.swift in Sources */,
+				173918B62CA5566F00990AE7 /* PeopleViewModel.swift in Sources */,
 				173918A52CA5557100990AE7 /* ContentView.swift in Sources */,
 				173918A32CA5557100990AE7 /* ClientsApp.swift in Sources */,
 			);
