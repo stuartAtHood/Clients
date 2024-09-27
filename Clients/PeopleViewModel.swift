@@ -41,7 +41,7 @@ class PeopleViewModel: ObservableObject {
                 // Debug print statements
                 
                 if let dataString = String(data: data, encoding: .utf8) {
-                    print("Received data string.")
+                    print("Received data string, count = " + String(dataString.count))
                 } else {
                     print("Failed to convert data to string.")
                 }

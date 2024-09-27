@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct Home2View: View {
     var body: some View {
         VStack {
             Image("Inteleweb")

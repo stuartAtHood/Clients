@@ -34,7 +34,7 @@ struct ClientDetailsView: View {
                 }
             }
             .padding(.top, -330.0)
-            .navigationTitle("Client Details")
+//            .navigationTitle("Client Details")
         }
     }
 }

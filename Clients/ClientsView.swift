@@ -15,20 +15,26 @@ struct ClientsView: View {
             List(viewModel.people) { person in
                 // HStack to place ID and Name side by side
                 HStack {
-                    Text("\(person.id)")  // Display the ID
-                        .frame(width: 50, alignment: .leading)  // Width for consistent spacing
-                        .font(.caption)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    NavigationLink(destination: ClientDetailsView()) {
+                        Text("\(person.id)")
+                            .multilineTextAlignment(.leading)
+                            .padding(.top, 0.0)
+                            .font(.caption)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                            .frame(width: 50.0)
+                    }
                     Text(person.name)    // Display the Name
                         .font(.caption)
+                        .multilineTextAlignment(.leading)
                 }
                 .padding(.vertical, 0)  // Add vertical padding for better spacing
             }
             .navigationTitle("Clients")
         }
+        .padding(.top)
     }
 }
 
 #Preview {
-    ContentView()
+    ClientsView()
 }
